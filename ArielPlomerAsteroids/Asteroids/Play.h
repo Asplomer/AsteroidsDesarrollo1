@@ -9,7 +9,7 @@ namespace Asteroids {
 	const int HEIGHT = 70;
 	const int SQUARE = 20;
 	const int BASESPEED = 80;
-
+	const int BULLETSPEED = 1000;
 	void UpdatePlay();
 	void DrawPlay();
 };
