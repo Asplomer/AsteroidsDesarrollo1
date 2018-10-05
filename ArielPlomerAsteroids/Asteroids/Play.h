@@ -2,14 +2,15 @@
 #define PLAY_H
 #include "raylib.h"
 #include "Game.h"
+#include "Ship.h"
 namespace Asteroids {
 	const int POSX = 20;
 	const float POSY = screenHeight / 2;
 	const int WIDTH = 20;
 	const int HEIGHT = 70;
-	const int SQUARE = 20;
-	const int BASESPEED = 80;
-	const int BULLETSPEED = 1000;
+	//const int SQUARE = 20;
+	//const int BASESPEED = 80;
+	//const int BULLETSPEED = 1000;
 	void UpdatePlay();
 	void DrawPlay();
 };

@@ -24,6 +24,7 @@ namespace Asteroids {
 			UpdateStart();
 		}break;
 		case Play: {
+			InitShip();
 			UpdatePlay();
 
 		}break;
