@@ -32,14 +32,30 @@ namespace asteroids {
 		UnloadTexture(texture);
 	}
 	void InputShip() {
-		if (IsKeyDown(KEY_LEFT)) { rotation -= BASESPEED * GetFrameTime(); }
-		if (IsKeyDown(KEY_RIGHT)) { rotation += BASESPEED * GetFrameTime(); }
-		if (IsKeyDown(KEY_UP)) {
+		Vector2 aux= GetMousePosition();
+			int aux2 = sqrt(pow(_ship.x - aux.x, 2) + pow(_ship.y - aux.y, 2));
+			rotation = acos((_ship.y - aux.y) / aux2) / DEG2RAD;;
+			if (_ship.x > aux.x) {
+				rotation = 360 - rotation;
+			}
+			
+			
+		/*if (IsKeyDown(KEY_LEFT)) { rotation -= BASESPEED * GetFrameTime(); }
+		if (IsKeyDown(KEY_RIGHT)) { rotation += BASESPEED * GetFrameTime(); }*/
+		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
 			_ship.x+= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
 			_ship.y -= BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();
+			
 		}
+		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+			_ship.x -= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
+			_ship.y += BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();
+			
+		}
+
 		if (IsKeyDown(KEY_SPACE) && !GetShot()/*!shoot*/) {
 			SetShot(true);
+			
 			//BulletRestart(rotation);
 			/*Bullet.x = _ship.x + SQUARE / 4 - 5;
 			Bullet.y = _ship.y + SQUARE / 4 - 5;
