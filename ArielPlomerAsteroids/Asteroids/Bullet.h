@@ -3,7 +3,7 @@
 #include <iostream>
 #include "raylib.h"
 #include "Game.h"
-namespace Asteroids {
+namespace asteroids {
 	
 	const int BULLETSPEED = 1000;
 	void BulletMovement(Rectangle ship, float rot);

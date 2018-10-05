@@ -2,8 +2,9 @@
 #define GAME_H
 #include "raylib.h"
 #include "Ship.h"
+#include "Asteroid.h"
 using namespace std;
-namespace Asteroids {
+namespace asteroids {
 #define WHITE  CLITERAL{ 255, 255, 255, 255 }
 	extern int screenWidth;
 	extern int screenHeight;

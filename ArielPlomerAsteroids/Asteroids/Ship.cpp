@@ -1,6 +1,6 @@
 #include "Ship.h"
 
-namespace Asteroids {
+namespace asteroids {
 	static Rectangle _ship = { 400,225, SQUARE, SQUARE };
 	static Texture2D texture;
 	static float _x = -100;
@@ -14,7 +14,6 @@ namespace Asteroids {
 	//static Rectangle Bullet = { -100, -100, SQUARE / 4, SQUARE / 4 };
 
 	void InitShip() {
-		
 		 texture = LoadTexture("res/Ship.png");
 	}
 	float GetRotation(/*float rot*/){

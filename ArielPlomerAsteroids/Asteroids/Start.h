@@ -1,7 +1,7 @@
 #ifndef START_H
 #define START_H
 
-namespace Asteroids {
+namespace asteroids {
 
 	void UpdateStart();
 	void DrawStart();

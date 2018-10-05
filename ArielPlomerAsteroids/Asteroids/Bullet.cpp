@@ -1,5 +1,5 @@
 #include "Bullet.h"
-namespace Asteroids {
+namespace asteroids {
 	static float bulletRotation = 0.0f;
 	static bool Shot = false;
 	static Rectangle Bullet = { -100, -100, SQUARE / 4, SQUARE / 4 };
@@ -9,7 +9,7 @@ namespace Asteroids {
 
 			Bullet.x += BULLETSPEED * sin(bulletRotation*DEG2RAD) *GetFrameTime();
 			Bullet.y -= BULLETSPEED * cos(bulletRotation*DEG2RAD) *GetFrameTime();
-			if (Bullet.x < 0.0f - Bullet.width || Bullet.x > screenWidth || Bullet.y < 0.0f - Bullet.height || Bullet.y > screenHeight) {
+			if (Bullet.x < 0.0f - Bullet.width || Bullet.x > GetScreenWidth() || Bullet.y < 0.0f - Bullet.height || Bullet.y  >GetScreenHeight()) {
 				SetShot(false);
 			}
 

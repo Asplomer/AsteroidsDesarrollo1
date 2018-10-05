@@ -2,29 +2,31 @@
 #include "Game.h"
 #include "Start.h"
 #include "Play.h"
-namespace Asteroids {
+namespace asteroids {
 
-	int screenWidth = 800;
-	int screenHeight = 450;
+	int screenWidth = GetScreenWidth();
+	int screenHeight = GetScreenHeight();
 	int score1 = 0;
 	int gameState = Start;
 	
 	void PlayGame() {
 
 		InitGame();
+		InitShip();
+		InitPlay();
 		while (!WindowShouldClose() && gameState != End) {
 			UpdateGame();
 			DrawGame();
 		}
 	}
 	static void UpdateGame() {
-
+		
 		switch (gameState) {
 		case Start: {
 			UpdateStart();
 		}break;
 		case Play: {
-			InitShip();
+			
 			UpdatePlay();
 
 		}break;
@@ -49,6 +51,7 @@ namespace Asteroids {
 			DrawStart();
 		}break;
 		case Play: {
+			
 			DrawPlay();
 
 		}break;

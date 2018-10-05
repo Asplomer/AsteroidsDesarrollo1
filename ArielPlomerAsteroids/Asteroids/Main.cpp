@@ -1,7 +1,7 @@
 #include <iostream>
 #include "raylib.h"
 #include "Game.h"
-using namespace Asteroids;
+using namespace asteroids;
 using namespace std;
 
 int main() {

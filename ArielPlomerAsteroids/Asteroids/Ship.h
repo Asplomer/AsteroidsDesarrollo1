@@ -5,9 +5,10 @@
 #include <raylib.h>
 #include "Game.h"
 #include "Bullet.h"
+#include "Play.h"
 using namespace std;
-namespace Asteroids{
-	const int BASESPEED = 80;
+namespace asteroids{
+	
 	const int SQUARE = 20;
 	//const int BULLETSPEED = 1000;
 	//extern Texture2D texture;

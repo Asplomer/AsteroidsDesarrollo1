@@ -1,19 +1,21 @@
 #include "Play.h"
-#include <math.h>
-namespace Asteroids {
+//#include <math.h>
+namespace asteroids {
 	//static Rectangle ship = { (float)GetScreenHeight()/2,(float)GetScreenWidth()/2, SQUARE, SQUARE };
 	static Rectangle ship = { 400,225, SQUARE, SQUARE };
-	static Rectangle BigAsteroid1 = {400, 55, SQUARE*2, SQUARE*2};
+	//static Rectangle BigAsteroid1 = {400, 55, SQUARE*2, SQUARE*2};
 	static Rectangle BigAsteroid2 = { 400, 110, SQUARE * 2, SQUARE * 2 };
-	
+	int BASESPEED = 80;
 	static float rotation = 0.0f;
-	static Vector2 origin = { 10, 10 };
+	//static Vector2 origin = { 10, 10 };
 	//static Rectangle Bullet = { -100, -100, SQUARE / 4, SQUARE / 4 };
-	static bool shoot = false;
-	static bool a1= true;
+	//static bool shoot = false;
+
+	static Asteroid a1;
+
 	static bool a2 = true;
 	//static float bulletRotation = 0.0f;
-	static float asteroidRotation = GetRandomValue(0,360);
+	//static float asteroidRotation = GetRandomValue(0,360);
 	static float asteroidRotation2 = GetRandomValue(0, 360);
 	//static Ship actualShip = new Ship();
 	//static actualShip.InitShip();
@@ -54,21 +56,22 @@ namespace Asteroids {
 				igAsteroid2.x = -50;
 				BigAsteroid2.y = -50;
 			}*/
-			if (a1) {
+			/*if (a1) {
 				BigAsteroid1.x +=BASESPEED * sin(asteroidRotation*DEG2RAD) *GetFrameTime();
 				BigAsteroid1.y -= BASESPEED * cos(asteroidRotation*DEG2RAD) *GetFrameTime();
-			}
+			}*/
+		UpdateAsteroid(a1);
 			if (a2) {
 				BigAsteroid2.x += BASESPEED * sin(asteroidRotation2*DEG2RAD) *GetFrameTime();
 				BigAsteroid2.y -= BASESPEED * cos(asteroidRotation2*DEG2RAD) *GetFrameTime();
 			}
-			if (a1&&(BigAsteroid1.x < 0.0f - BigAsteroid1.width ||
+			/*if (a1&&(BigAsteroid1.x < 0.0f - BigAsteroid1.width ||
 				BigAsteroid1.x > screenWidth ||
 				BigAsteroid1.y < 0.0f - BigAsteroid1.height ||
 				BigAsteroid1.y > screenHeight)) {
 				
 
-			}
+			}*/
 			UpdateBullet(GetShip(),GetRotation());
 			
 			/*
@@ -86,7 +89,7 @@ namespace Asteroids {
 			}*/
 			Shoot();
 
-		if (IsKeyDown(KEY_BACKSPACE) || (!a1 && !a2 )) {
+		if (IsKeyDown(KEY_BACKSPACE) || (GetDestroyed(a1) && !a2 )) {
 			gameState = End;
 			UnloadShip();
 		}
@@ -94,11 +97,15 @@ namespace Asteroids {
 	void DrawPlay() {
 
 		DrawBullet();
-	if(a1)DrawRectangleRec(BigAsteroid1, BROWN);
+		
+	/*if(a1)DrawRectangleRec(BigAsteroid1, BROWN);*/
 	if (a2)DrawRectangleRec(BigAsteroid2, BROWN);
 		//DrawRectanglePro(ship, origin,rotation, WHITE);
 	
 		DrawShip(ship, 0.0f);
+		DrawAsteroid(a1);
 	}
-
+	void InitPlay(){
+		a1 = InitAsteroid(400, 55, 100);
+	}
 }
