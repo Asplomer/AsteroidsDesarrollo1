@@ -9,7 +9,7 @@ namespace asteroids {
 	//static bool shoot;
 	static float rotation = 0.0f;
 	static Rectangle origin = { 0.0f, 0.0f, 32.0f, 32.0f};
-
+	
 	//static float bulletRotation = 0.0f;
 	//static Rectangle Bullet = { -100, -100, SQUARE / 4, SQUARE / 4 };
 
@@ -32,22 +32,23 @@ namespace asteroids {
 		UnloadTexture(texture);
 	}
 	void InputShip() {
+
+		
 		Vector2 aux= GetMousePosition();
+		//aux = {200.0f, 100.0f};
 			int aux2 = sqrt(pow(_ship.x - aux.x, 2) + pow(_ship.y - aux.y, 2));
-			rotation = acos((_ship.y - aux.y) / aux2) / DEG2RAD;;
+			rotation = acos((_ship.y - aux.y) / aux2) / DEG2RAD;
 			if (_ship.x > aux.x) {
 				rotation = 360 - rotation;
 			}
-			
-			
-		/*if (IsKeyDown(KEY_LEFT)) { rotation -= BASESPEED * GetFrameTime(); }
-		if (IsKeyDown(KEY_RIGHT)) { rotation += BASESPEED * GetFrameTime(); }*/
-		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+
+
+		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
 			_ship.x+= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
 			_ship.y -= BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();
 			
 		}
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
 			_ship.x -= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
 			_ship.y += BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();
 			

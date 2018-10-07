@@ -12,7 +12,7 @@ namespace asteroids {
 	//static bool shoot = false;
 
 	static Asteroid a1;
-
+	static int pause = 0;
 	static bool a2 = true;
 	//static float bulletRotation = 0.0f;
 	//static float asteroidRotation = GetRandomValue(0,360);
@@ -21,7 +21,11 @@ namespace asteroids {
 	//static actualShip.InitShip();
 	
 	void UpdatePlay() {
-		
+		if (IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON)) {
+			if (pause = 0)
+				pause = 1;
+			else pause = 0;
+		}
 		/*
 		if (IsKeyDown(KEY_LEFT)) { rotation -= BASESPEED* GetFrameTime(); }
 		if (IsKeyDown(KEY_RIGHT)) { rotation += BASESPEED * GetFrameTime(); }
