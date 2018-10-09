@@ -4,8 +4,8 @@
 #include "Play.h"
 namespace asteroids {
 
-	int screenWidth = GetScreenWidth();
-	int screenHeight = GetScreenHeight();
+	int screenWidth = 0;
+	int screenHeight =0;
 	int score1 = 0;
 	int gameState = Start;
 	
@@ -72,8 +72,8 @@ namespace asteroids {
 		EndDrawing();
 	}
 	static void InitGame() {
-		int screenWidth = 800;
-		int screenHeight = 450;
+		screenWidth = 800;
+		screenHeight = 400;
 		InitWindow(screenWidth, screenHeight, "Asteroids");
 		SetExitKey(0);
 		int gameState = Start;

@@ -25,10 +25,8 @@ namespace asteroids{
 	void InitShip();
 	void Colision();
 	float GetRotation();
-	float SetRotation(float rot);
 	void DrawShip(Rectangle rec, float rot);
 	void InputShip();
-	void Shoot();
 	void UnloadShip();
 	Rectangle GetShip();
 };

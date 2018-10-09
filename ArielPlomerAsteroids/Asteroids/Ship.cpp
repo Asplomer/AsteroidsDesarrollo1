@@ -76,23 +76,18 @@ namespace asteroids {
 		if (IsKeyDown(KEY_SPACE) && !GetShot()/*!shoot*/) {
 			SetShot(true);
 		}
-		
-
-
+		//if (_ship.x + _ship.width < 0.0f) _ship.x = screenWidth;
+		if (_ship.x > screenWidth-5.0f) { _ship.x -= screenWidth+5.1f; 
+		}
+		else if (_ship.x +5.0f < 0.0f) {
+			_ship.x += screenWidth+5.1f;
+		}
+		if (_ship.y > screenHeight- 5.0f) {
+			_ship.y -= screenHeight + 5.1f;
+		}
+		else if (_ship.y + 5.0f < 0.0f) {
+			_ship.y += screenHeight + 5.1f;
+		}
 	}
-	void Shoot() {
-		/*if (shoot) {
-			//Bullet.y -= BASESPEED * 1*GetFrameTime();
-
-			Bullet.x += BULLETSPEED * sin(bulletRotation*DEG2RAD) *GetFrameTime();
-			Bullet.y -= BULLETSPEED * cos(bulletRotation*DEG2RAD) *GetFrameTime();
-			if (Bullet.x < 0.0f - Bullet.width || Bullet.x > screenWidth || Bullet.y < 0.0f - Bullet.height || Bullet.y > screenHeight) {
-				shoot = false;
-			}
-
-		}if (!shoot) {
-			Bullet.x = _ship.x + SQUARE / 4 - 5;
-			Bullet.y = _ship.y + SQUARE / 4 - 5;
-		}*/
-	}
+	
 }

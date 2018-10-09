@@ -91,7 +91,7 @@ namespace asteroids {
 				Bullet.x = ship.x + SQUARE/4 -5;
 				Bullet.y = ship.y + SQUARE/4 -5;
 			}*/
-			Shoot();
+			
 
 		if (IsKeyDown(KEY_BACKSPACE) || (GetDestroyed(a1) && !a2 )) {
 			gameState = End;
