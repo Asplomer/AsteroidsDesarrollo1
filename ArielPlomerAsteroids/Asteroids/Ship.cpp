@@ -6,6 +6,8 @@ namespace asteroids {
 	static float _x = -100;
 	static float _y = -100;
 	static Vector2 originVec = { 32,32};
+	static float accelSpeed = 0.0f;
+	static Vector2 vecSpeed = { 0.0f,0.0f };
 	//static bool shoot;
 	static float rotation = 0.0f;
 	static Rectangle origin = { 0.0f, 0.0f, 32.0f, 32.0f};
@@ -34,33 +36,45 @@ namespace asteroids {
 	void InputShip() {
 
 		
-		Vector2 aux= GetMousePosition();
+		Vector2 mousePos = GetMousePosition();
 		//aux = {200.0f, 100.0f};
-			int aux2 = sqrt(pow(_ship.x - aux.x, 2) + pow(_ship.y - aux.y, 2));
-			rotation = acos((_ship.y - aux.y) / aux2) / DEG2RAD;
-			if (_ship.x > aux.x) {
-				rotation = 360 - rotation;
-			}
+		Vector2 dir = { _ship.x - mousePos.x, _ship.y - mousePos.y };
 
+		float moduloDir = sqrt(pow(dir.x, 2) + pow(dir.y, 2));
+		
+		if (moduloDir > 0.0f)
+		{
+			rotation = acos((_ship.y - mousePos.y) / moduloDir) / DEG2RAD;
+		}
+
+		if (_ship.x > mousePos.x) {
+			rotation = 360 - rotation;
+		}
+
+		vecSpeed.x = sin(rotation*DEG2RAD) *GetFrameTime();
+		vecSpeed.y = cos(rotation*DEG2RAD) *GetFrameTime();
 
 		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
-			_ship.x+= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
-			_ship.y -= BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();
-			
+			if (accelSpeed < 2) accelSpeed += 0.04f;
+			/*_ship.x+= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
+			_ship.y -= BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();*/
 		}
+		else if (accelSpeed > 0)accelSpeed -= 0.0004;
+		else if (accelSpeed < 0) accelSpeed = 0;
+
+
 		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
-			_ship.x -= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
-			_ship.y += BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();
-			
+			if (accelSpeed > 0) accelSpeed -= 0.04f;
+			else if (accelSpeed < 0) accelSpeed = 0;
+				/*_ship.x -= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
+			_ship.y += BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();*/
 		}
+		_ship.x += vecSpeed.x * accelSpeed* BASESPEED;
+		_ship.y -= vecSpeed.y * accelSpeed* BASESPEED;
+
 
 		if (IsKeyDown(KEY_SPACE) && !GetShot()/*!shoot*/) {
 			SetShot(true);
-			
-			//BulletRestart(rotation);
-			/*Bullet.x = _ship.x + SQUARE / 4 - 5;
-			Bullet.y = _ship.y + SQUARE / 4 - 5;
-			bulletRotation = rotation;*/
 		}
 		
 
