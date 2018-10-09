@@ -18,14 +18,13 @@ namespace asteroids {
 	void InitShip() {
 		 texture = LoadTexture("res/Ship.png");
 	}
-	float GetRotation(/*float rot*/){
-		//rotation = rot;
+	float GetRotation(){
 		return rotation;
 	}
 	Rectangle GetShip() {
 		return _ship;
 	}
-	void DrawShip(Rectangle rec, float rot) {
+	void DrawShip(float rot) {
 		Rectangle aux= {_ship.x, _ship.y ,originVec.x, originVec.y };
 		Vector2 aux2 = { 16, 16 };
 		DrawTexturePro(texture,origin, aux, aux2, rotation, WHITE);
@@ -37,7 +36,6 @@ namespace asteroids {
 
 		
 		Vector2 mousePos = GetMousePosition();
-		//aux = {200.0f, 100.0f};
 		Vector2 dir = { _ship.x - mousePos.x, _ship.y - mousePos.y };
 
 		float moduloDir = sqrt(pow(dir.x, 2) + pow(dir.y, 2));
@@ -54,29 +52,27 @@ namespace asteroids {
 		vecSpeed.x = sin(rotation*DEG2RAD) *GetFrameTime();
 		vecSpeed.y = cos(rotation*DEG2RAD) *GetFrameTime();
 
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
 			if (accelSpeed < 2) accelSpeed += 0.04f;
-			/*_ship.x+= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
-			_ship.y -= BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();*/
 		}
-		else if (accelSpeed > 0)accelSpeed -= 0.0004;
+		else if (accelSpeed > 0)accelSpeed -= 0.0004f;
 		else if (accelSpeed < 0) accelSpeed = 0;
 
 
-		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+			/*
 			if (accelSpeed > 0) accelSpeed -= 0.04f;
-			else if (accelSpeed < 0) accelSpeed = 0;
-				/*_ship.x -= BASESPEED * sin(rotation*DEG2RAD) *GetFrameTime();
-			_ship.y += BASESPEED * cos(rotation*DEG2RAD) *GetFrameTime();*/
+			else if (accelSpeed < 0) accelSpeed = 0;*/
+			SetShot(true);
 		}
 		_ship.x += vecSpeed.x * accelSpeed* BASESPEED;
 		_ship.y -= vecSpeed.y * accelSpeed* BASESPEED;
 
-
-		if (IsKeyDown(KEY_SPACE) && !GetShot()/*!shoot*/) {
+		/*
+		if (IsKeyDown(KEY_SPACE) && !GetShot()) {
 			SetShot(true);
-		}
-		//if (_ship.x + _ship.width < 0.0f) _ship.x = screenWidth;
+		}*/
+		
 		if (_ship.x > screenWidth-5.0f) { _ship.x -= screenWidth+5.1f; 
 		}
 		else if (_ship.x +5.0f < 0.0f) {

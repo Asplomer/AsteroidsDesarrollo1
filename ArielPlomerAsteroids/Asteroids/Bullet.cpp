@@ -35,4 +35,8 @@ namespace asteroids {
 	void DrawBullet() {
 		DrawRectangleRec(Bullet, WHITE);
 	}
+	Rectangle GetRect() {
+	
+		return Bullet;
+	}
 }

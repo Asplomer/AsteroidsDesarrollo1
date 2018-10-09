@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Start.h"
 #include "Play.h"
+#include "Credit.h"
 namespace asteroids {
 
 	int screenWidth = 0;
@@ -34,7 +35,7 @@ namespace asteroids {
 
 		}break;
 		case Credit: {
-
+			UpdateCredit();
 
 		}break;
 		case End: {
@@ -59,7 +60,7 @@ namespace asteroids {
 
 		}break;
 		case Credit: {
-
+			DrawCredit();
 
 		}break;
 		case End: {

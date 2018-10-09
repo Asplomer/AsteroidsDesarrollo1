@@ -2,70 +2,111 @@
 #include "Game.h"
 namespace asteroids {
 	static Texture2D texture;
-	
-	/*static float rotation;
-	static Rectangle origin = { 0.0f, 0.0f, 32.0f, 32.0f };
-	static bool destroyed;
-	static float aRotation;
-	float aSpeed= 0.0f;*/
 
-	Asteroid InitAsteroid(float posX, float posY, float speed) {
-		Asteroid a;
-		a.aSpeed = speed;
-		a.aRotation = GetRandomValue(0, 360);
-		a.destroyed = false;
-		a.astRectangle = { posX, posY, 40, 40 };
+
+	static Asteroide aArray[ARRAYSIZE];
+
+
+
+
+	static Rectangle origin;
+
+
+	void InitAsteroid(Vector2 a1, Vector2 a2, Vector2 a3) {
+		for (int i = 0; i < ARRAYSIZE; i++)
+		{
+			aArray[i].x = a1.x;
+			aArray[i].destroyed = false;
+			aArray[i].aRotation = (float)GetRandomValue(0, 360);
+			aArray[i].rotation = 0.0f;
+			aArray[i].aSpeed = 80.0f;
+		}
+		aArray[0].x = a1.x;
+		aArray[0].y = a1.y;
+		aArray[1].x = a2.x;
+		aArray[1].y = a2.y;
+		aArray[2].x = a3.x;
+		aArray[2].y = a3.y;
+		
+		aArray[0].astRectangle = { 0, 0, 40, 40 };
+		aArray[1].astRectangle = { 0, 0, 40, 40 };
+		aArray[2].astRectangle = { 0, 0, 40, 40 };
+		
+
+		Rectangle origin = { 0.0f, 0.0f, 32.0f, 32.0f };
 		texture = LoadTexture("res/Asteroid.png");
-		return a;
+
 	}
 
-	void UpdateAsteroid(Asteroid a) {
-		if (!a.destroyed) {
-			a.astRectangle.x += a.aSpeed * sin(a.aRotation*DEG2RAD) *GetFrameTime();
-			a.astRectangle.y -= a.aSpeed * cos(a.aRotation*DEG2RAD) *GetFrameTime();
-			a.rotation+= 100 * GetFrameTime();
-		}
-		if (!a.destroyed){
-			if (a.astRectangle.x < 0.0f - a.astRectangle.width) {
-				a.astRectangle.x = GetScreenWidth();
-			}
-			if (a.astRectangle.y > GetScreenWidth() + a.astRectangle.width) {
-				a.astRectangle.x = 0.0f;
-			}
-			if (a.astRectangle.y < 0.0f - a.astRectangle.width) {
-				a.astRectangle.x = GetScreenWidth();
-			}
-			if (a.astRectangle.y > GetScreenHeight() + a.astRectangle.height) {
-				a.astRectangle.y = 0.0f;
-			}
-			/*if (Asteroid.x < 0.0f - Asteroid.width ||
-				Asteroid.x > GetScreenWidth() ||
-				Asteroid.y < 0.0f - Asteroid.height ||
-				Asteroid.y > GetScreenHeight())) {
+	void UpdateAsteroid() {
+		for (int i = 0; i < ARRAYSIZE; i++){
+			if (!aArray[i].destroyed) {
+				
+				aArray[i].x += aArray[i].aSpeed * sin(aArray[i].aRotation*DEG2RAD) *GetFrameTime();
+				aArray[i].y -= aArray[i].aSpeed * cos(aArray[i].aRotation*DEG2RAD) *GetFrameTime();
+				aArray[i].rotation += 100 * GetFrameTime();
 
-			}*/
-		}
-	}
-	bool AsteroidColisionRec(Rectangle rec, Asteroid a){
-		if (!a.destroyed) {
+			}
 			
 
 
+			if (aArray[i].x > screenWidth - 5.0f) {
+				aArray[i].x -= screenWidth + 5.1f;
+			}
+			else if (aArray[i].x + 5.0f < 0.0f) {
+				aArray[i].x += screenWidth + 5.1f;
+			}
+			if (aArray[i].y > screenHeight - 5.0f) {
+				aArray[i].y -= screenHeight + 5.1f;
+			}
+			else if (aArray[i].y + 5.0f < 0.0f) {
+				aArray[i].y += screenHeight + 5.1f;
+			}
+
+			
+		}
+	}
+
+
+	bool AsteroidColisionRec(Rectangle r) {
+		for (int i = 0; i < ARRAYSIZE; i++)
+		{
+			Rectangle aux = { aArray[i].x, aArray[i].y, aArray[i].astRectangle.width , aArray[i].astRectangle.height };
+			if (CheckCollisionRecs(r, aux)) {
+
+				DestroyAsteroid(i);
+				
+				return true;
+			}
 		}
 		return false;
 	}
 
 
-	void DrawAsteroid(Asteroid a){
-		if (!a.destroyed) {
-			Vector2 aux = { a.origin.height / 2, a.origin.width / 2 };
-			DrawTexturePro(texture, a.origin, a.astRectangle, aux, a.rotation, WHITE);
+	void DrawAsteroid() {
+		
+			Vector2 aux = { 0.0f, 0.0f };
+			for (int i = 0; i < ARRAYSIZE; i++) {
+				if (!aArray[i].destroyed) {
+					aux = { aArray[i].astRectangle.width / 2, aArray[i].astRectangle.height / 2 };
+					Rectangle aux2 = { aArray[i].x, aArray[i].y, aArray[i].astRectangle.width , aArray[i].astRectangle.height };
+					//DrawTexturePro(texture, origin, aux2, aux, aArray[i].rotation, WHITE);
+					DrawTexture(texture, aArray[i].x, aArray[i].y, WHITE);
+				}
+			}
+	}
+	void DestroyAsteroid(int i) {
+		aArray[i].destroyed = true;
+	}
+	bool GetDestroyed(int i) {
+		return aArray[i].destroyed;
+	}
+	bool AllDestroyed() {
+
+		if (GetDestroyed(0) && GetDestroyed(1) && GetDestroyed(2)) {
+			return true;
+
 		}
-	}
-	void DestroyAsteroid(Asteroid a){
-		a.destroyed = true;		
-	}
-	bool GetDestroyed(Asteroid a) {
-		return a.destroyed;
+		return false;
 	}
 }

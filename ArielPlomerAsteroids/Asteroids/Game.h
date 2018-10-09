@@ -18,6 +18,16 @@ namespace asteroids {
 		Credit,
 		End
 	};
+	struct Asteroide {
+		float x;
+		float y;
+		bool destroyed;
+		float aRotation;
+		float rotation;
+		float aSpeed;
+		Rectangle astRectangle;
+
+	};
 	void PlayGame();
 	static void UpdateGame();
 	static void DrawGame();

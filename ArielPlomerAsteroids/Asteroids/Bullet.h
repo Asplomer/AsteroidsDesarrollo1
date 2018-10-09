@@ -11,6 +11,7 @@ namespace asteroids {
 	void SetShot(bool sho);
 	bool GetShot();
 	void DrawBullet();
+	Rectangle GetRect();
 	void UpdateBullet(Rectangle ship, float rot);
 };
 #endif 
