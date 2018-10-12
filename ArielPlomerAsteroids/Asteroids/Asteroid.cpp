@@ -1,5 +1,5 @@
 #include "Asteroid.h"
-#include "Game.h"
+#include "game.h"
 namespace asteroids {
 	static Texture2D texture;
 

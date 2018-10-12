@@ -18,6 +18,25 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="asteroid.cpp" />
+    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="credit.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="play.cpp" />
+    <ClCompile Include="ship.cpp" />
+    <ClCompile Include="start.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="asteroid.h" />
+    <ClInclude Include="bullet.h" />
+    <ClInclude Include="credit.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="play.h" />
+    <ClInclude Include="ship.h" />
+    <ClInclude Include="start.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{44A2C62A-2D39-4847-8FD9-1E2E188A8040}</ProjectGuid>
@@ -137,25 +156,6 @@ xcopy "$(SolutionDir)res" "$(TargetDir)res" /E /I /Y</Command>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Asteroid.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Credit.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Play.cpp" />
-    <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="Start.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Asteroid.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Credit.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Play.h" />
-    <ClInclude Include="Ship.h" />
-    <ClInclude Include="Start.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

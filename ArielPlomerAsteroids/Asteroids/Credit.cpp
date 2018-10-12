@@ -1,5 +1,5 @@
-#include "Credit.h"
-#include "Game.h"
+#include "credit.h"
+#include "game.h"
 #include "raylib.h"
 namespace asteroids {
 

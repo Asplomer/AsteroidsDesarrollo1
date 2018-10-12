@@ -3,9 +3,9 @@
 #include <iostream>
 #include <math.h>
 #include <raylib.h>
-#include "Game.h"
-#include "Bullet.h"
-#include "Play.h"
+#include "game.h"
+#include "bullet.h"
+#include "play.h"
 using namespace std;
 namespace asteroids{
 	

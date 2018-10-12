@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 #include "raylib.h"
-#include "Ship.h"
-#include "Asteroid.h"
+#include "ship.h"
+#include "asteroid.h"
 using namespace std;
 namespace asteroids {
 #define WHITE  CLITERAL{ 255, 255, 255, 255 }

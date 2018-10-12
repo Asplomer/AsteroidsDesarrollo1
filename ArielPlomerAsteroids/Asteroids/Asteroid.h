@@ -1,9 +1,9 @@
 #ifndef ASTEROID_H
 #define ASTEROID_H
 #include <iostream>
-#include "Game.h"
-#include "Bullet.h"
-#include "Play.h"
+#include "game.h"
+#include "bullet.h"
+#include "play.h"
 #include <math.h>
 #include "raylib.h"
 

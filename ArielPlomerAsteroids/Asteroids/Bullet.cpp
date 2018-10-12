@@ -1,4 +1,4 @@
-#include "Bullet.h"
+#include "bullet.h"
 namespace asteroids {
 	static float bulletRotation = 0.0f;
 	static bool Shot = false;

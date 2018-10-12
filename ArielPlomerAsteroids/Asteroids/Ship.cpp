@@ -1,4 +1,4 @@
-#include "Ship.h"
+#include "ship.h"
 
 namespace asteroids {
 	static Rectangle _ship = { 400,225, SQUARE, SQUARE };

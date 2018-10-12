@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Game.h"
-#include "Start.h"
-#include "Play.h"
-#include "Credit.h"
+#include "game.h"
+#include "start.h"
+#include "play.h"
+#include "credit.h"
 namespace asteroids {
 
 	int screenWidth = 0;

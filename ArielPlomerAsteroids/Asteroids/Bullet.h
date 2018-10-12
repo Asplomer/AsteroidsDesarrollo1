@@ -2,7 +2,7 @@
 #define BULLET_H
 #include <iostream>
 #include "raylib.h"
-#include "Game.h"
+#include "game.h"
 namespace asteroids {
 	
 	const int BULLETSPEED = 1000;
