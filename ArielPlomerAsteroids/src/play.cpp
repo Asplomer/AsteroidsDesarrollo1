@@ -8,7 +8,7 @@ namespace asteroids {
 	
 	
 	int BASESPEED = 80;
-
+	Music music;
 	static float rotation = 0.0f;
 
 
@@ -16,10 +16,13 @@ namespace asteroids {
 	static bool paused = false;
 
 	void InitPlay() {
-
+		music = LoadMusicStream("res/Music.ogg");
+		PlayMusicStream(music);
 		InitAsteroid(a1, a2, a3);
 	}
 	void UpdatePlay() {
+		UpdateMusicStream(music);
+
 		if (IsKeyPressed(KEY_SPACE)) {
 			if (paused == false)paused = true;
 			else paused = false;
@@ -45,6 +48,7 @@ namespace asteroids {
 
 
 		if (AsteroidColisionRec(GetShip()) || (AllDestroyed())) {
+			StopMusicStream(music);
 			gameState = End;
 			UnloadShip();
 		}
@@ -58,8 +62,12 @@ namespace asteroids {
 		DrawShip(0.0f);
 		DrawAsteroid();
 		if (paused) {
+			StopMusicStream(music);
 			DrawText(FormatText("Paused"), 250, 200, 32, DARKGRAY);
 			DrawText(FormatText("Menu"), 250, 230, 32, DARKGRAY);
+		}
+		else{
+			PlayMusicStream(music);
 		}
 	}
 

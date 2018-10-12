@@ -64,7 +64,8 @@ namespace asteroids {
 
 		}break;
 		case End: {
-
+			UnloadMusicStream(music);   // Unload music stream buffers from RAM
+			CloseAudioDevice();
 
 		}break;
 		}
@@ -76,6 +77,7 @@ namespace asteroids {
 		screenWidth = 800;
 		screenHeight = 400;
 		InitWindow(screenWidth, screenHeight, "Asteroids");
+		InitAudioDevice();
 		SetExitKey(0);
 		int gameState = Start;
 

@@ -8,6 +8,7 @@
 namespace asteroids {
 	const int WIDTH = 20;
 	const int HEIGHT = 70;
+	extern Music music;
 	extern int BASESPEED;
 	extern bool paused;
 
