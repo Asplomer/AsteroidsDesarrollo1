@@ -1,5 +1,5 @@
 #include "Asteroid.h"
-#include "game.h"
+
 namespace asteroids {
 	static Texture2D texture;
 
@@ -72,7 +72,7 @@ namespace asteroids {
 		for (int i = 0; i < ARRAYSIZE; i++)
 		{
 			Rectangle aux = { aArray[i].x, aArray[i].y, aArray[i].astRectangle.width , aArray[i].astRectangle.height };
-			if (CheckCollisionRecs(r, aux)) {
+			if (CheckCollisionRecs(r, aux) && !aArray[i].destroyed) {
 
 				DestroyAsteroid(i);
 				

@@ -23,7 +23,6 @@ namespace asteroids{
 		float rotation;
 	};*/
 	void InitShip();
-	void Colision();
 	float GetRotation();
 	void DrawShip(float rot);
 	void InputShip();
