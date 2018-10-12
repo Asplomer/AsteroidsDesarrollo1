@@ -8,12 +8,8 @@ namespace asteroids {
 	static Vector2 originVec = { 32,32};
 	static float accelSpeed = 0.0f;
 	static Vector2 vecSpeed = { 0.0f,0.0f };
-	//static bool shoot;
 	static float rotation = 0.0f;
 	static Rectangle origin = { 0.0f, 0.0f, 32.0f, 32.0f};
-	
-	//static float bulletRotation = 0.0f;
-	//static Rectangle Bullet = { -100, -100, SQUARE / 4, SQUARE / 4 };
 
 	void InitShip() {
 		 texture = LoadTexture("res/Ship.png");
@@ -55,23 +51,16 @@ namespace asteroids {
 		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
 			if (accelSpeed < 2) accelSpeed += 0.04f;
 		}
-		else if (accelSpeed > 0)accelSpeed -= 0.0004f;
+		//else if (accelSpeed > 0)accelSpeed -= 0.0004f;
 		else if (accelSpeed < 0) accelSpeed = 0;
 
 
 		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
-			/*
-			if (accelSpeed > 0) accelSpeed -= 0.04f;
-			else if (accelSpeed < 0) accelSpeed = 0;*/
 			SetShot(true);
 		}
 		_ship.x += vecSpeed.x * accelSpeed* BASESPEED;
 		_ship.y -= vecSpeed.y * accelSpeed* BASESPEED;
 
-		/*
-		if (IsKeyDown(KEY_SPACE) && !GetShot()) {
-			SetShot(true);
-		}*/
 		
 		if (_ship.x > screenWidth-5.0f) { _ship.x -= screenWidth+5.1f; 
 		}
