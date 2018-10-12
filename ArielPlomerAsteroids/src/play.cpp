@@ -15,14 +15,16 @@ namespace asteroids {
 	
 	static bool paused = false;
 
+	void InitPlay() {
 
+		InitAsteroid(a1, a2, a3);
+	}
 	void UpdatePlay() {
 		if (IsKeyPressed(KEY_SPACE)) {
 			if (paused == false)paused = true;
 			else paused = false;
 		}
-		if (!paused)
-		{
+		if (!paused){
 			InputShip();
 			AsteroidColisionRec(GetRect());
 			UpdateAsteroid();
@@ -60,8 +62,5 @@ namespace asteroids {
 			DrawText(FormatText("Menu"), 250, 230, 32, DARKGRAY);
 		}
 	}
-	void InitPlay() {
 
-		InitAsteroid(a1, a2, a3);
-	}
 }

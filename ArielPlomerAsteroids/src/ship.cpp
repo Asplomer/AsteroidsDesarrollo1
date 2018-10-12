@@ -17,17 +17,13 @@ namespace asteroids {
 	float GetRotation(){
 		return rotation;
 	}
-	Rectangle GetShip() {
-		return _ship;
-	}
+
 	void DrawShip(float rot) {
 		Rectangle aux= {_ship.x, _ship.y ,originVec.x, originVec.y };
 		Vector2 aux2 = { 16, 16 };
 		DrawTexturePro(texture,origin, aux, aux2, rotation, WHITE);
 	}
-	void UnloadShip(){
-		UnloadTexture(texture);
-	}
+
 	void InputShip() {
 
 		
@@ -36,8 +32,7 @@ namespace asteroids {
 
 		float moduloDir = sqrt(pow(dir.x, 2) + pow(dir.y, 2));
 		
-		if (moduloDir > 0.0f)
-		{
+		if (moduloDir > 0.0f){
 			rotation = acos((_ship.y - mousePos.y) / moduloDir) / DEG2RAD;
 		}
 
@@ -62,7 +57,8 @@ namespace asteroids {
 		_ship.y -= vecSpeed.y * accelSpeed* BASESPEED;
 
 		
-		if (_ship.x > screenWidth-5.0f) { _ship.x -= screenWidth+5.1f; 
+		if (_ship.x > screenWidth-5.0f) {
+			_ship.x -= screenWidth+5.1f; 
 		}
 		else if (_ship.x +5.0f < 0.0f) {
 			_ship.x += screenWidth+5.1f;
@@ -74,5 +70,10 @@ namespace asteroids {
 			_ship.y += screenHeight + 5.1f;
 		}
 	}
-	
+	void UnloadShip() {
+		UnloadTexture(texture);
+	}
+	Rectangle GetShip() {
+		return _ship;
+	}
 }

@@ -22,11 +22,7 @@ namespace asteroids {
 	void BulletRestart(float rot) {
 		bulletRotation = rot;
 	}
-	void UpdateBullet(Rectangle ship, float rot) {
-		BulletMovement(ship, rot);
-		
-	}
-	void SetShot(bool sho){
+	void SetShot(bool sho) {
 		Shot = sho;
 	}
 	bool GetShot() {
@@ -36,7 +32,13 @@ namespace asteroids {
 		DrawRectangleRec(Bullet, WHITE);
 	}
 	Rectangle GetRect() {
-	
+
 		return Bullet;
 	}
+	void UpdateBullet(Rectangle ship, float rot) {
+		BulletMovement(ship, rot);
+		
+	}
+
+
 }

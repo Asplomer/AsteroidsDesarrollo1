@@ -13,8 +13,7 @@ namespace asteroids {
 
 
 	void InitAsteroid(Vector2 a1, Vector2 a2, Vector2 a3) {
-		for (int i = 0; i < ARRAYSIZE; i++)
-		{
+		for (int i = 0; i < ARRAYSIZE; i++){
 			aArray[i].x = a1.x;
 			aArray[i].destroyed = false;
 			aArray[i].aRotation = (float)GetRandomValue(0, 360);
@@ -69,8 +68,7 @@ namespace asteroids {
 
 
 	bool AsteroidColisionRec(Rectangle r) {
-		for (int i = 0; i < ARRAYSIZE; i++)
-		{
+		for (int i = 0; i < ARRAYSIZE; i++){
 			Rectangle aux = { aArray[i].x, aArray[i].y, aArray[i].astRectangle.width , aArray[i].astRectangle.height };
 			if (CheckCollisionRecs(r, aux) && !aArray[i].destroyed) {
 
